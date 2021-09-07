@@ -93,7 +93,7 @@ export const manageLocalStorage = (
 ) => {
   const lsKey = `piggybank_${address}`;
   const currentLSState = ls.get(lsKey);
-  if (txDataSplit[0] === PiggyBankTxType.CREATE) {
+  if (txDataSplit[0] === PiggyBankTxType.CREATE && txDataSplit[1]) {
     ls.add(lsKey, {
       amount: '0',
       lockDate: BigInt('0x' + txDataSplit[1]).toString(),
@@ -105,7 +105,7 @@ export const manageLocalStorage = (
       amount: BigInt(BigInt(currentLSState.amount) + BigInt(value)).toString(),
     });
   }
-  if (txDataSplit[0] === PiggyBankTxType.GET) {
+  if (txDataSplit[0] === PiggyBankTxType.GET && txSCDataSplit?.[2]) {
     ls.add(lsKey, {
       ...currentLSState,
       amount: BigInt('0x' + txSCDataSplit[2]).toString(),

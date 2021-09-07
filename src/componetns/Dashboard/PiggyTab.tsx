@@ -62,7 +62,8 @@ const PiggyTab: React.FC<PiggyTabProps> = ({ piggy }) => {
               <Heading>You don't have a Piggy yet. Let's create one!</Heading>
               <Text>
                 Remember that you need to have some xEGLD. Get some using the
-                faucet <Link href='https://r3d4.fr/elrond/testnet/'>here</Link>
+                faucet <Link href='https://r3d4.fr/elrond/devnet/'>here</Link>,
+                or the one from the devnet web wallet.
               </Text>
             </>
           )}

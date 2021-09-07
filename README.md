@@ -8,7 +8,7 @@ PiggyBank is a custom Smart Contract on the Elrond blockchain. If you want to kn
 
 - [https://elven-piggy-bank.netlify.app/](https://elven-piggy-bank.netlify.app/)
 
-Remember that the testnet will be restarted from time to time. It means that preconfigured PiggyBank Smart Contract will stop working. I'll try to redeploy a new one in such a case, but this won't be automatic.
+Remember that the devnet will be restarted from time to time. It could mean that preconfigured PiggyBank Smart Contract will stop working. I'll try to redeploy a new one in such a case, but this won't be automatic.
 
 **This app is for learning and demonstration purposes only.**
 
@@ -16,8 +16,8 @@ Remember that the testnet will be restarted from time to time. It means that pre
 
 1. Clone the repo
 1. Remember to configure the .env file. Review and copy `.env.example` into `.env.local`
-2. In `.env.local` configure your PiggyBank Smart Contract address. (Check how to deploy your custom one [here](https://www.julian.io/articles/elrond-smart-contracts.html). You can also use the one from this repo (of course if the testnet isn't restarted yet)).
-3. You would also need some xEGLD on the testnet. There is one faucet which you can use: [https://r3d4.fr/elrond/testnet/](https://r3d4.fr/elrond/testnet/). **Important - sometimes it won't be able to send a lot of xEGLD.**. You can also use devnet, where you should be able to use a web wallet's built-in faucet. Or there is also one for the devnet [here](https://r3d4.fr/elrond/devnet/).
+2. In `.env.local` configure your PiggyBank Smart Contract address. (Check how to deploy your custom one [here](https://www.julian.io/articles/elrond-smart-contracts.html). You can also use the one from this repo (of course if the devnet isn't restarted yet)).
+3. You would also need some xEGLD on the devnet. You should be able to use a web wallet's built-in faucet. Or there is also one for the devnet [here](https://r3d4.fr/elrond/devnet/).
  
 Generated using [CRA elrond-dapp template and Elrond tools](https://www.npmjs.com/package/cra-template-elrond-dapp)
 

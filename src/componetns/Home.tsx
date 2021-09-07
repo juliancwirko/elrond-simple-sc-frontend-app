@@ -25,26 +25,34 @@ const Home: React.FC = () => {
             If you want to know more about preparing and deploying such a Smart
             Contract, check out the separate{' '}
             <Link href='https://www.julian.io/articles/elrond-smart-contracts.html'>
-              blog post
+              blog post.
             </Link>
             . And{' '}
             <Link href='https://github.com/juliancwirko/elrond-simple-sc'>
               repository
             </Link>
-            .
+            . Walkthrough video there, and the article talks about the testnet
+            because I used the testnet back then. But you can quickly do the
+            same using the devnet, which I recommended. You'll find information
+            on how to do this also there.
           </Paragraph>
           <Paragraph marginBottom={15}>
             This app is for learning and demonstration purposes only. Can be
             buggy.
           </Paragraph>
           <Paragraph marginBottom={15}>
-            You can log in using your testnet wallet. Then you would also need
-            some xEGLD. For the testnet you can get some using the faucet from{' '}
-            <Link href='https://r3d4.fr/elrond/testnet/'>here</Link>.
+            You can log in using your devnet wallet. Then you would also need
+            some xEGLD. For the devnet you can get some using the faucet from
+            the devnet web wallet. Or there is alos one here:{' '}
+            <Link href='https://r3d4.fr/elrond/devnet/'>here</Link>.
           </Paragraph>
           <Paragraph marginBottom={15}>
-            Check the GitHub <Link href=''>README.md</Link> file if you want to
-            play with it locally, with your own PiggyBank Smart Contract, etc.
+            Check the GitHub{' '}
+            <Link href='https://github.com/juliancwirko/elrond-simple-sc-frontend-app'>
+              README.md
+            </Link>{' '}
+            file if you want to play with it locally, with your own PiggyBank
+            Smart Contract, etc.
           </Paragraph>
           <Paragraph>
             Generated using{' '}
