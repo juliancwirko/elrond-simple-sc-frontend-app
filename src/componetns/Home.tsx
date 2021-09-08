@@ -11,7 +11,11 @@ const Home: React.FC = () => {
         <Pane>
           <Paragraph marginBottom={15}>
             PiggyBank is an app for a custom Smart Contract on the Elrond
-            blockchain.
+            blockchain. Check{' '}
+            <Link href='https://github.com/juliancwirko/elrond-simple-sc-frontend-app'>
+              GitHub
+            </Link>{' '}
+            repo.
           </Paragraph>
           <Paragraph marginBottom={15}>
             <Text fontWeight='bold'>Logic:</Text> When you create a Piggy, you
@@ -33,17 +37,17 @@ const Home: React.FC = () => {
             </Link>
             . Walkthrough video there, and the article talks about the testnet
             because I used the testnet back then. But you can quickly do the
-            same using the devnet, which I recommended. You'll find information
-            on how to do this also there.
+            same using the devnet, which I recommend. You'll find information on
+            how to do this also there.
           </Paragraph>
           <Paragraph marginBottom={15}>
-            This app is for learning and demonstration purposes only. Can be
+            This app is for learning and demonstration purposes only. It can be
             buggy.
           </Paragraph>
           <Paragraph marginBottom={15}>
             You can log in using your devnet wallet. Then you would also need
             some xEGLD. For the devnet you can get some using the faucet from
-            the devnet web wallet. Or there is alos one here:{' '}
+            the devnet web wallet. Or there is also one{' '}
             <Link href='https://r3d4.fr/elrond/devnet/'>here</Link>.
           </Paragraph>
           <Paragraph marginBottom={15}>
