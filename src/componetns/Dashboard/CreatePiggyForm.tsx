@@ -20,6 +20,7 @@ const CreatePiggyForm: React.FC<CreatePiggyFormProps> = ({
       transaction: createPiggy(lockTimestamp),
       callbackRoute: '/dashboard',
     });
+    onClose(false);
   };
 
   const handleConfirm = () => {

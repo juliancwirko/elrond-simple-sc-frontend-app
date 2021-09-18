@@ -3,9 +3,9 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "@elrondnetwork/dapp": "^0.0.41",
-    "@elrondnetwork/dapp-utils": "^0.0.9",
-    "@elrondnetwork/erdjs": "^8.0.0",
+    "@elrondnetwork/dapp": "^0.0.58",
+    "@elrondnetwork/dapp-utils": "^0.0.10",
+    "@elrondnetwork/erdjs": "^8.0.1-alpha.5",
     "bignumber.js": "^9.0.1",
     "buffer": "^6.0.3",
     "evergreen-ui": "^6.4.0",

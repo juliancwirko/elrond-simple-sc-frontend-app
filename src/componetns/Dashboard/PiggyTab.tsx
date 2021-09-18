@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { UI } from '@elrondnetwork/dapp-utils';
+import { Ui } from '@elrondnetwork/dapp-utils';
 import { Pane, Heading, Button, Text, Link } from 'evergreen-ui';
 import * as Dapp from '@elrondnetwork/dapp';
 import { PiggyBankLS } from '../../types';
@@ -46,7 +46,7 @@ const PiggyTab: React.FC<PiggyTabProps> = ({ piggy }) => {
             <>
               <Heading>
                 Your PiggyBank amount is:{' '}
-                <UI.Denominate
+                <Ui.Denominate
                   value={piggy.amount}
                   decimals={2}
                   erdLabel='xEGLD'

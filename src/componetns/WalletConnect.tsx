@@ -1,8 +1,15 @@
 import { Card, Pane, Button } from 'evergreen-ui';
 import * as Dapp from '@elrondnetwork/dapp';
+import { useHistory } from 'react-router-dom';
 import MainLayout from './MainLayout';
 
 const WalletConnect = () => {
+  const history = useHistory();
+
+  const goBack = () => {
+    history.push('/unlock');
+  };
+
   return (
     <MainLayout>
       <Pane
@@ -24,14 +31,7 @@ const WalletConnect = () => {
             title='Maiar Login'
             lead='Scan the QR code using Maiar'
           />
-          {/* TODO: there is something wrong with web wallet redirect, hard refresh required */}
-          <Button
-            onClick={() => {
-              window.location.href = '/unlock';
-            }}
-          >
-            Back
-          </Button>
+          <Button onClick={goBack}>Back</Button>
         </Card>
       </Pane>
     </MainLayout>

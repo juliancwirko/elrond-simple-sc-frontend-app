@@ -17,7 +17,7 @@ import { ChainID } from '../types';
 
 const MainLayout: React.FC = ({ children }) => {
   const { address, chainId } = Dapp.useContext();
-  const dispatch = Dapp.useDispatch();
+  const dappLogout = Dapp.useLogout();
   const history = useHistory();
 
   const smallRes = useMediaQuery({
@@ -29,6 +29,11 @@ const MainLayout: React.FC = ({ children }) => {
     if (chainID === ChainID.DEVNET) return 'Elrond Devnet';
     if (chainID === ChainID.MAINNET) return 'Elrond Mainnet';
     return '';
+  };
+
+  const logOut = (e: React.SyntheticEvent<Element, Event>) => {
+    e.preventDefault();
+    dappLogout({ callbackUrl: `${window.location.origin}/` });
   };
 
   return (
@@ -75,11 +80,7 @@ const MainLayout: React.FC = ({ children }) => {
                   content={
                     <Menu>
                       <Menu.Group>
-                        <Menu.Item
-                          onSelect={() => dispatch({ type: 'logout' })}
-                        >
-                          Logout
-                        </Menu.Item>
+                        <Menu.Item onSelect={logOut}>Logout</Menu.Item>
                       </Menu.Group>
                     </Menu>
                   }

@@ -1,8 +1,15 @@
 import { Card, Pane, Button } from 'evergreen-ui';
 import * as Dapp from '@elrondnetwork/dapp';
+import { useHistory } from 'react-router-dom';
 import MainLayout from './MainLayout';
 
 const Ledger = () => {
+  const history = useHistory();
+
+  const goBack = () => {
+    history.push('/unlock');
+  };
+
   return (
     <MainLayout>
       <Pane
@@ -19,13 +26,7 @@ const Ledger = () => {
           textAlign='center'
         >
           <Dapp.Pages.Ledger callbackRoute='/dashboard' />
-          {/* TODO: there is something wrong with web wallet redirect, hard refresh required */}
-          <Button
-            marginTop={15}
-            onClick={() => {
-              window.location.href = '/unlock';
-            }}
-          >
+          <Button marginTop={15} onClick={goBack}>
             Back
           </Button>
         </Card>

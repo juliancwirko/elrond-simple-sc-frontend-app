@@ -1,4 +1,4 @@
-import { UI } from '@elrondnetwork/dapp-utils';
+import { Ui } from '@elrondnetwork/dapp-utils';
 import { Pane, Heading, Paragraph, Link, Text, LinkIcon } from 'evergreen-ui';
 import { useMediaQuery } from 'react-responsive';
 import * as Dapp from '@elrondnetwork/dapp';
@@ -50,7 +50,7 @@ const AccountTab = () => {
             Your wallet balance:
           </Heading>
           <Paragraph>
-            <UI.Denominate value={account.balance} erdLabel='xEGLD' />
+            <Ui.Denominate value={account.balance} erdLabel='xEGLD' />
           </Paragraph>
         </Pane>
       </Pane>
