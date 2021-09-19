@@ -15,15 +15,13 @@ export const useTransactionUrlState = () => {
     const transactionState = isTransactionOk(href);
     const hash = getTransactionIdHash(href);
 
-    if (transactionState !== TransactionStatus.UNKNOWN && hash !== null) {
-      setStatus(transactionState);
-      setTxHash(hash);
-      window.history.replaceState(
-        {},
-        document.title,
-        window.location.href.split(/[?#]/)[0]
-      );
-    }
+    setStatus(transactionState);
+    setTxHash(hash);
+    window.history.replaceState(
+      {},
+      document.title,
+      window.location.href.split(/[?#]/)[0]
+    );
   }, [location]);
 
   return {
