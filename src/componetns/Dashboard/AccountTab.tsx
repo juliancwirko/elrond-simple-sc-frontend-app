@@ -11,28 +11,28 @@ const AccountTab = () => {
 
   return (
     <>
-      <Pane display='flex' flexDirection={smallRes ? 'column' : 'row'}>
+      <Pane display="flex" flexDirection={smallRes ? 'column' : 'row'}>
         <Pane
           width={smallRes ? '100%' : '50%'}
           marginRight={smallRes ? 0 : 10}
           marginBottom={25}
           padding={30}
           elevation={1}
-          backgroundColor='white'
+          backgroundColor="white"
         >
           <Heading size={700} marginBottom={10}>
             Your wallet address:
           </Heading>
           <Paragraph>
             <Link
-              display='flex'
-              alignItems='center'
+              display="flex"
+              alignItems="center"
               href={`${explorerAddress}accounts/${address}`}
-              wordBreak='break-word'
-              target='_blank'
-              rel='noreferrer'
+              wordBreak="break-word"
+              target="_blank"
+              rel="noreferrer"
             >
-              <Text wordWrap='break-word'>{address}</Text>{' '}
+              <Text wordWrap="break-word">{address}</Text>{' '}
               <LinkIcon marginLeft={10} />
             </Link>
           </Paragraph>
@@ -44,13 +44,13 @@ const AccountTab = () => {
           marginBottom={25}
           padding={30}
           elevation={1}
-          backgroundColor='white'
+          backgroundColor="white"
         >
           <Heading size={700} marginBottom={10}>
             Your wallet balance:
           </Heading>
           <Paragraph>
-            <Ui.Denominate value={account.balance} erdLabel='xEGLD' />
+            <Ui.Denominate value={account.balance} erdLabel="xEGLD" />
           </Paragraph>
         </Pane>
       </Pane>

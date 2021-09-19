@@ -33,6 +33,12 @@ export const shortenWalletAddress = (address: string, charsAmount = 6) => {
   return `${firstPart}...${lastPart}`;
 };
 
+export const chainIdMap: { [key: string]: string } = {
+  devnet: 'D',
+  testnet: 'T',
+  mainnet: '1',
+};
+
 // Localstorage - simple storage for latest state of the PiggyBank
 export const ls = {
   add(key: string, value: unknown) {
@@ -55,8 +61,8 @@ export const ls = {
 
 // Transaction url parsers
 
-export const isTransactionOk = () => {
-  const currentUrlString = window?.location?.href;
+export const isTransactionOk = (urlString: string | null) => {
+  const currentUrlString = urlString || window?.location?.href;
   if (!currentUrlString) return TransactionStatus.UNKNOWN;
   const currentUrl = new URL(currentUrlString);
   if (!currentUrl.searchParams.has('status')) return TransactionStatus.UNKNOWN;
@@ -65,8 +71,8 @@ export const isTransactionOk = () => {
   return TransactionStatus.FAIL;
 };
 
-export const getTransactionIdHash = () => {
-  const currentUrlString = window?.location?.href;
+export const getTransactionIdHash = (urlString: string | null) => {
+  const currentUrlString = urlString || window?.location?.href;
   if (!currentUrlString) return null;
   const currentUrl = new URL(currentUrlString);
   if (!currentUrl.searchParams.has('txHash')) return null;

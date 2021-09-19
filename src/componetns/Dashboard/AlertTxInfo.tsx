@@ -5,7 +5,7 @@ import { TransactionStatus } from '../../types';
 import { Alert } from 'evergreen-ui';
 
 interface CustomInfoBoxProps {
-  txHash: string;
+  txHash: string | null;
 }
 
 const CustomInfoBox: React.FC<CustomInfoBoxProps> = ({ txHash }) => (
@@ -13,8 +13,8 @@ const CustomInfoBox: React.FC<CustomInfoBoxProps> = ({ txHash }) => (
     <Text>You can check the status in the blockchain explorer</Text>{' '}
     <Link
       href={`${network.explorerAddress}transactions/${txHash}`}
-      target='_blank'
-      rel='noreferrer'
+      target="_blank"
+      rel="noreferrer"
     >
       here
     </Link>
@@ -35,13 +35,13 @@ const AlertTxInfo: React.FC<AlertTxInfoProps> = ({
   return (
     <>
       {status === TransactionStatus.SUCCESS && (
-        <Alert intent='success' title='Transaction successful!'>
+        <Alert intent="success" title="Transaction successful!">
           {txHash && <CustomInfoBox txHash={txHash} />}
         </Alert>
       )}
       {status === TransactionStatus.FAIL && (
         <Alert
-          intent='danger'
+          intent="danger"
           title={errorMsg || 'Ooops! Something went wrong!'}
         >
           {txHash && <CustomInfoBox txHash={txHash} />}

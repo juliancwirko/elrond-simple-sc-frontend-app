@@ -23,9 +23,9 @@ const Dashboard: React.FC = () => {
   const mounted = useRef(true);
 
   useEffect(() => {
-    setPending(true);
     const fetchTransactions = async () => {
       if (!txHash) return;
+      setPending(true);
       const response = await fetch(getTransactionByHash(txHash));
       const data = await response.json();
       if (data) {
@@ -70,21 +70,21 @@ const Dashboard: React.FC = () => {
             <Tab
               key={tab}
               id={tab}
-              appearance='primary'
+              appearance="primary"
               onSelect={() => setTabSelectedIndex(index)}
               isSelected={index === selectedIndex}
-              className='no-focus'
+              className="no-focus"
             >
               {tab}
             </Tab>
           ))}
         </Tablist>
-        <Pane flex='1'>
+        <Pane flex="1">
           {selectedIndex === 0 && (
             <PiggyTab piggy={ls.get(`piggybank_${address}`)} />
           )}
         </Pane>
-        <Pane flex='1'>{selectedIndex === 1 && <AccountTab />}</Pane>
+        <Pane flex="1">{selectedIndex === 1 && <AccountTab />}</Pane>
       </Pane>
     </MainLayout>
   );

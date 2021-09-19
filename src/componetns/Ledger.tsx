@@ -13,19 +13,19 @@ const Ledger = () => {
   return (
     <MainLayout>
       <Pane
-        display='flex'
-        alignItems='center'
-        justifyContent='center'
-        marginTop='20vh'
+        display="flex"
+        alignItems="center"
+        justifyContent="center"
+        marginTop="20vh"
       >
         <Card
           elevation={1}
           maxWidth={300}
-          width='100%'
+          width="100%"
           padding={30}
-          textAlign='center'
+          textAlign="center"
         >
-          <Dapp.Pages.Ledger callbackRoute='/dashboard' />
+          <Dapp.Pages.Ledger callbackRoute="/dashboard" />
           <Button marginTop={15} onClick={goBack}>
             Back
           </Button>

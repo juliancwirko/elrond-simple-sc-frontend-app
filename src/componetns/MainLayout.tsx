@@ -38,39 +38,39 @@ const MainLayout: React.FC = ({ children }) => {
 
   return (
     <Pane>
-      <Dapp.Authenticate routes={routes} unlockRoute='/unlock'>
-        <Pane background='white' marginBottom={30} border='default'>
+      <Dapp.Authenticate routes={routes} unlockRoute="/unlock">
+        <Pane background="white" marginBottom={30} border="default">
           <Pane
             maxWidth={1200}
             paddingX={30}
-            marginX='auto'
-            width='100%'
-            display='flex'
-            alignItems='center'
-            justifyContent='space-between'
+            marginX="auto"
+            width="100%"
+            display="flex"
+            alignItems="center"
+            justifyContent="space-between"
             height={majorScale(8)}
           >
-            <Pane display='flex'>
+            <Pane display="flex">
               <Heading
                 size={800}
                 onClick={() => history.push('/')}
-                cursor='pointer'
-                display='flex'
-                alignItems='center'
+                cursor="pointer"
+                display="flex"
+                alignItems="center"
               >
                 PiggyBank
               </Heading>
               {!smallRes && (
-                <StatusIndicator color='success' marginLeft={20}>
+                <StatusIndicator color="success" marginLeft={20}>
                   {getChainName(chainId.valueOf() as ChainID)}
                 </StatusIndicator>
               )}
             </Pane>
             {address ? (
-              <Pane display='flex' alignItems='center'>
+              <Pane display="flex" alignItems="center">
                 <Heading
                   onClick={() => history.push('/dashboard')}
-                  cursor='pointer'
+                  cursor="pointer"
                   marginRight={15}
                 >
                   Dashboard
@@ -86,9 +86,9 @@ const MainLayout: React.FC = ({ children }) => {
                   }
                 >
                   <StatusIndicator
-                    color='success'
+                    color="success"
                     title={address}
-                    cursor='pointer'
+                    cursor="pointer"
                   >
                     {shortenWalletAddress(address)}
                   </StatusIndicator>
@@ -98,7 +98,7 @@ const MainLayout: React.FC = ({ children }) => {
               <Pane>
                 <Strong
                   onClick={() => history.push('/unlock')}
-                  cursor='pointer'
+                  cursor="pointer"
                 >
                   Login
                 </Strong>
@@ -109,8 +109,8 @@ const MainLayout: React.FC = ({ children }) => {
         <Pane
           maxWidth={1200}
           paddingX={30}
-          marginX='auto'
-          width='100%'
+          marginX="auto"
+          width="100%"
           paddingBottom={40}
         >
           {children}

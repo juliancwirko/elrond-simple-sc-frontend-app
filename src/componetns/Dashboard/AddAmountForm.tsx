@@ -18,6 +18,7 @@ const AddAmountForm: React.FC<AddAmountFormProps> = ({ isShown, onClose }) => {
       transaction: addAmount(amount),
       callbackRoute: '/dashboard',
     });
+    onClose(false);
   };
 
   const handleConfirm = () => {
@@ -37,10 +38,10 @@ const AddAmountForm: React.FC<AddAmountFormProps> = ({ isShown, onClose }) => {
   return (
     <Dialog
       isShown={isShown}
-      title='Add amount'
+      title="Add amount"
       onConfirm={handleConfirm}
       onCloseComplete={clearState()}
-      confirmLabel='Submit'
+      confirmLabel="Submit"
     >
       <Pane marginBottom={10}>
         <Text>
@@ -49,10 +50,10 @@ const AddAmountForm: React.FC<AddAmountFormProps> = ({ isShown, onClose }) => {
         </Text>
       </Pane>
       <TextInput
-        min='0'
-        type='number'
+        min="0"
+        type="number"
         onChange={handleAmountChange()}
-        width='100%'
+        width="100%"
         value={amount}
       />
     </Dialog>

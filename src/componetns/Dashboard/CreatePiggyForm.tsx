@@ -40,19 +40,19 @@ const CreatePiggyForm: React.FC<CreatePiggyFormProps> = ({
   return (
     <Dialog
       isShown={isShown}
-      title='Create a Piggy'
+      title="Create a Piggy"
       onConfirm={handleConfirm}
       onCloseComplete={clearState()}
-      confirmLabel='Submit'
+      confirmLabel="Submit"
     >
       <Pane marginBottom={10}>
         <Text>Choose lock date and time</Text>
       </Pane>
       <TextInput
         min={new Date().toISOString().split('.')[0]}
-        type='datetime-local'
+        type="datetime-local"
         onChange={handleDateChange()}
-        width='100%'
+        width="100%"
       />
     </Dialog>
   );

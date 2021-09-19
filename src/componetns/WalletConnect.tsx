@@ -13,23 +13,23 @@ const WalletConnect = () => {
   return (
     <MainLayout>
       <Pane
-        display='flex'
-        alignItems='center'
-        justifyContent='center'
-        marginTop='20vh'
+        display="flex"
+        alignItems="center"
+        justifyContent="center"
+        marginTop="20vh"
       >
         <Card
           elevation={1}
           maxWidth={300}
-          width='100%'
+          width="100%"
           padding={30}
-          textAlign='center'
+          textAlign="center"
         >
           <Dapp.Pages.WalletConnect
-            callbackRoute='/dashboard'
-            logoutRoute='/'
-            title='Maiar Login'
-            lead='Scan the QR code using Maiar'
+            callbackRoute="/dashboard"
+            logoutRoute="/"
+            title="Maiar Login"
+            lead="Scan the QR code using Maiar"
           />
           <Button onClick={goBack}>Back</Button>
         </Card>

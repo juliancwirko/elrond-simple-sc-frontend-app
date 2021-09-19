@@ -40,8 +40,8 @@ const PiggyTab: React.FC<PiggyTabProps> = ({ piggy }) => {
 
   return (
     <div>
-      <Pane padding={30} elevation={1} backgroundColor='white'>
-        <Pane marginBottom={30} textAlign='center'>
+      <Pane padding={30} elevation={1} backgroundColor="white">
+        <Pane marginBottom={30} textAlign="center">
           {piggy ? (
             <>
               <Heading>
@@ -49,7 +49,7 @@ const PiggyTab: React.FC<PiggyTabProps> = ({ piggy }) => {
                 <Ui.Denominate
                   value={piggy.amount}
                   decimals={2}
-                  erdLabel='xEGLD'
+                  erdLabel="xEGLD"
                 />
               </Heading>
               <Text>
@@ -62,16 +62,16 @@ const PiggyTab: React.FC<PiggyTabProps> = ({ piggy }) => {
               <Heading>You don't have a Piggy yet. Let's create one!</Heading>
               <Text>
                 Remember that you need to have some xEGLD. Get some using the
-                faucet <Link href='https://r3d4.fr/elrond/devnet/'>here</Link>,
+                faucet <Link href="https://r3d4.fr/elrond/devnet/">here</Link>,
                 or the one from the devnet web wallet.
               </Text>
             </>
           )}
         </Pane>
-        <Pane display='flex' justifyContent='center'>
+        <Pane display="flex" justifyContent="center">
           <Button
             onClick={createPiggyModalOpen()}
-            appearance='primary'
+            appearance="primary"
             marginRight={20}
             disabled={Boolean(piggy)}
           >
@@ -89,8 +89,8 @@ const PiggyTab: React.FC<PiggyTabProps> = ({ piggy }) => {
           </Button>
           <Button
             onClick={getPayout}
-            appearance='primary'
-            intent='success'
+            appearance="primary"
+            intent="success"
             disabled={parseInt(piggy?.amount || '0') === 0}
           >
             Payout
