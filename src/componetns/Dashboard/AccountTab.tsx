@@ -1,13 +1,19 @@
 import { Ui } from '@elrondnetwork/dapp-utils';
+import { useEffect } from 'react';
 import { Pane, Heading, Paragraph, Link, Text, LinkIcon } from 'evergreen-ui';
 import { useMediaQuery } from 'react-responsive';
 import * as Dapp from '@elrondnetwork/dapp';
 
 const AccountTab = () => {
   const { account, address, explorerAddress } = Dapp.useContext();
+  const refreshAccount = Dapp.useRefreshAccount();
   const smallRes = useMediaQuery({
     query: '(max-width: 600px)',
   });
+
+  useEffect(() => {
+    refreshAccount();
+  }, []);
 
   return (
     <>
@@ -49,7 +55,8 @@ const AccountTab = () => {
           <Heading size={700} marginBottom={10}>
             Your wallet balance:
           </Heading>
-          <Paragraph>
+          <Paragraph>(It can take some time to update after payout.)</Paragraph>
+          <Paragraph fontWeight="bold">
             <Ui.Denominate value={account.balance} erdLabel="xEGLD" />
           </Paragraph>
         </Pane>

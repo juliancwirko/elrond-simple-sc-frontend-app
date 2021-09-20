@@ -1,4 +1,4 @@
-import React, { useRef, useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Pane, Tablist, Tab } from 'evergreen-ui';
 import * as Dapp from '@elrondnetwork/dapp';
 import MainLayout from '../MainLayout';
@@ -19,8 +19,6 @@ const Dashboard: React.FC = () => {
   const { address } = Dapp.useContext();
   const [transactionData, setTransactionData] =
     useState<{ type: string; data: string; errorMessage?: string }>();
-
-  const mounted = useRef(true);
 
   useEffect(() => {
     const fetchTransactions = async () => {
@@ -44,17 +42,12 @@ const Dashboard: React.FC = () => {
             : '',
           errorMessage: data.results?.[0]?.returnMessage,
         });
-      }
-      if (mounted.current) {
         setPending(false);
       }
     };
     if (txHash && !pending) {
       fetchTransactions();
     }
-    return () => {
-      mounted.current = false;
-    };
   }, [txHash]);
 
   return (
