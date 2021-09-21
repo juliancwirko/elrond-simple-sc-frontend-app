@@ -12,6 +12,7 @@ PiggyBank is a custom Smart Contract on the Elrond blockchain. If you want to kn
 
 - [Elrond Smart Contracts - interacting using erdpy](https://youtu.be/mIsNI7ZxQRM)
 - [Elrond Smart Contracts - interacting using simple front-end app](https://youtu.be/Sjpj7Btasgs)
+- [Elrond Smart Contracts - interacting using the Maiar DeFi Wallet browser extension](https://youtu.be/MpPbi6xkBQs)
 
 Remember that the devnet will be restarted from time to time. It could mean that preconfigured PiggyBank Smart Contract will stop working. I'll try to redeploy a new one in such a case, but this won't be automatic.
 
