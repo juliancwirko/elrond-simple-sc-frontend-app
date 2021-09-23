@@ -8,6 +8,10 @@ PiggyBank is a custom Smart Contract on the Elrond blockchain. If you want to kn
 
 - [https://elven-piggy-bank.netlify.app/](https://elven-piggy-bank.netlify.app/)
 
+### Articles
+
+- [Simple user interface for Elrond Smart Contract](https://www.julian.io/articles/elrond-dapp-ui.html)
+
 ### Walkthrough videos
 
 - [Elrond Smart Contracts - interacting using erdpy](https://youtu.be/mIsNI7ZxQRM)
