@@ -23,78 +23,72 @@ const Dashboard: React.FC = () => {
     ls.get(`piggybank_${address}`)?.lockDate
   );
   const { status, txHash } = useTransactionUrlState();
-  const [pending, setPending] = useState(false);
   const [transactionData, setTransactionData] =
     useState<{ type: string; data: string; errorMessage?: string }>();
 
   const getAmount = async () => {
-    const result = await scQueries.getLockedAmount(address);
-    const base64Val = result?.returnData?.[0];
-    const hexValue = base64Val ? base64ToHex(base64Val) : null;
-    if (hexValue) {
-      ls.add(`piggybank_${address}`, {
-        ...ls.get(`piggybank_${address}`),
-        amount: parseInt(hexValue, 16).toString(),
-      });
-      setSyncedAmount(parseInt(hexValue, 16).toString());
+    if (address) {
+      const result = await scQueries.getLockedAmount(address);
+      const base64Val = result?.returnData?.[0];
+      const hexValue = base64Val ? base64ToHex(base64Val) : null;
+      if (hexValue) {
+        ls.add(`piggybank_${address}`, {
+          ...ls.get(`piggybank_${address}`),
+          amount: parseInt(hexValue, 16).toString(),
+        });
+        setSyncedAmount(parseInt(hexValue, 16).toString());
+      }
     }
   };
 
   const getTimeLock = async () => {
-    const result = await scQueries.getLockTime(address);
-    const base64Val = result?.returnData?.[0];
-    const hexValue = base64Val ? base64ToHex(base64Val) : null;
-    if (hexValue) {
-      ls.add(`piggybank_${address}`, {
-        ...ls.get(`piggybank_${address}`),
-        lockDate: parseInt(hexValue, 16).toString(),
-      });
-      setSyncedTimeLock(parseInt(hexValue, 16).toString());
+    if (address) {
+      const result = await scQueries.getLockTime(address);
+      const base64Val = result?.returnData?.[0];
+      const hexValue = base64Val ? base64ToHex(base64Val) : null;
+      if (hexValue) {
+        ls.add(`piggybank_${address}`, {
+          ...ls.get(`piggybank_${address}`),
+          lockDate: parseInt(hexValue, 16).toString(),
+        });
+        setSyncedTimeLock(parseInt(hexValue, 16).toString());
+      }
     }
   };
 
   useEffect(() => {
-    const fetchTransactions = async () => {
-      if (!txHash) return;
-      setPending(true);
-      const response = await fetch(getTransactionByHash(txHash));
-      const data = await response.json();
-      if (data) {
-        const txDataSplit = atob(data.data).split('@');
-        const txSCData = data.results?.[0]?.data;
-        if (
-          data.status !== 'fail' &&
-          txDataSplit[0] === PiggyBankTxType.PAYOUT
-        ) {
-          // Reset piggy bank when payout
-          ls.remove(`piggybank_${address}`);
-          setSyncedAmount(undefined);
-          setSyncedTimeLock(undefined);
+    const fetchAndSync = async () => {
+      if (txHash) {
+        const response = await fetch(getTransactionByHash(txHash));
+        const data = await response.json();
+        if (data) {
+          const txDataSplit = atob(data.data).split('@');
+          const txSCData = data.results?.[0]?.data;
+          if (
+            data.status !== 'fail' &&
+            txDataSplit[0] === PiggyBankTxType.PAYOUT
+          ) {
+            // Reset piggy bank when payout
+            ls.remove(`piggybank_${address}`);
+            setSyncedAmount(undefined);
+            setSyncedTimeLock(undefined);
+          }
+          setTransactionData({
+            type: txDataSplit[0],
+            data: txSCData
+              ? parseResponseFromSC(
+                  atob(txSCData),
+                  data.results?.[0]?.returnMessage
+                )
+              : '',
+            errorMessage: data.results?.[0]?.returnMessage,
+          });
         }
-        setTransactionData({
-          type: txDataSplit[0],
-          data: txSCData
-            ? parseResponseFromSC(
-                atob(txSCData),
-                data.results?.[0]?.returnMessage
-              )
-            : '',
-          errorMessage: data.results?.[0]?.returnMessage,
-        });
-        setPending(false);
       }
-    };
-
-    const syncData = async () => {
-      setPending(true);
       await Promise.all([getAmount(), getTimeLock()]);
-      setPending(false);
     };
 
-    if (!pending) {
-      fetchTransactions();
-      syncData();
-    }
+    fetchAndSync();
   }, [txHash]);
 
   return (
@@ -120,7 +114,7 @@ const Dashboard: React.FC = () => {
           ))}
         </Tablist>
         <Pane flex="1">
-          {selectedIndex === 0 && !pending && (
+          {selectedIndex === 0 && (
             <PiggyTab
               piggyAmount={syncedAmount}
               piggyTimeLock={syncedTimeLock}

@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { isTransactionOk, getTransactionIdHash } from './utils';
+import { isTransactionOk } from './utils';
 import { TransactionStatus } from './types';
 import { useLocation } from 'react-router-dom';
 
@@ -11,9 +11,12 @@ export const useTransactionUrlState = () => {
   const [txHash, setTxHash] = useState<string | null>(null);
 
   useEffect(() => {
-    const href = window?.location?.href;
-    const transactionState = isTransactionOk(href);
-    const hash = getTransactionIdHash(href);
+    const queryString = location.search;
+    const urlParams = new URLSearchParams(queryString);
+    const status = urlParams.get('status');
+    const hash = urlParams.get('txHash');
+
+    const transactionState = isTransactionOk(status);
 
     setStatus(transactionState);
     setTxHash(hash);

@@ -72,22 +72,11 @@ export const ls = {
 
 // Transaction url parsers
 
-export const isTransactionOk = (urlString: string | null) => {
-  const currentUrlString = urlString || window?.location?.href;
-  if (!currentUrlString) return TransactionStatus.UNKNOWN;
-  const currentUrl = new URL(currentUrlString);
-  if (!currentUrl.searchParams.has('status')) return TransactionStatus.UNKNOWN;
-  const isSuccess = currentUrl.searchParams.get('status') === 'success';
+export const isTransactionOk = (status: string | null) => {
+  if (!status) return TransactionStatus.UNKNOWN;
+  const isSuccess = status === 'success';
   if (isSuccess) return TransactionStatus.SUCCESS;
   return TransactionStatus.FAIL;
-};
-
-export const getTransactionIdHash = (urlString: string | null) => {
-  const currentUrlString = urlString || window?.location?.href;
-  if (!currentUrlString) return null;
-  const currentUrl = new URL(currentUrlString);
-  if (!currentUrl.searchParams.has('txHash')) return null;
-  return currentUrl.searchParams.get('txHash');
 };
 
 // Transaction data parsers
