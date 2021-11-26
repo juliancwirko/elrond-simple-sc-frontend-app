@@ -19,10 +19,9 @@ export enum TransactionStatus {
 }
 
 export enum PiggyBankTxType {
-  CREATE = 'create_piggy',
-  ADD = 'add_amount',
-  GET = 'amount',
-  PAYOUT = 'pay_out',
+  CREATE = 'createPiggy',
+  ADD = 'addAmount',
+  PAYOUT = 'payOut',
 }
 
 export interface PiggyBankLS {

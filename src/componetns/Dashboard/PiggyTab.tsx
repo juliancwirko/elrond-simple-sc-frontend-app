@@ -2,16 +2,24 @@ import React, { useState } from 'react';
 import { Ui } from '@elrondnetwork/dapp-utils';
 import { Pane, Heading, Button, Text, Link } from 'evergreen-ui';
 import * as Dapp from '@elrondnetwork/dapp';
-import { PiggyBankLS } from '../../types';
 import * as transactions from '../../transactions';
+
 import CreatePiggyForm from './CreatePiggyForm';
 import AddAmountForm from './AddAmountForm';
 
 interface PiggyTabProps {
-  piggy: PiggyBankLS;
+  piggyAmount: string | undefined;
+  piggyTimeLock: string | undefined;
+  getAmount: () => void;
+  getTimeLock: () => void;
 }
 
-const PiggyTab: React.FC<PiggyTabProps> = ({ piggy }) => {
+const PiggyTab: React.FC<PiggyTabProps> = ({
+  piggyAmount,
+  piggyTimeLock,
+  getAmount,
+  getTimeLock,
+}) => {
   const [createPiggyModal, setCreatePiggyModal] = useState(false);
   const [addAmountModal, setAddAmountModal] = useState(false);
   const sendTransaction = Dapp.useSendTransaction();
@@ -24,13 +32,6 @@ const PiggyTab: React.FC<PiggyTabProps> = ({ piggy }) => {
     setAddAmountModal(true);
   };
 
-  const getAmount = () => {
-    sendTransaction({
-      transaction: transactions.amount(),
-      callbackRoute: '/dashboard',
-    });
-  };
-
   const getPayout = () => {
     sendTransaction({
       transaction: transactions.payout(),
@@ -38,23 +39,28 @@ const PiggyTab: React.FC<PiggyTabProps> = ({ piggy }) => {
     });
   };
 
+  const sync = () => {
+    getAmount();
+    getTimeLock();
+  };
+
   return (
     <div>
       <Pane padding={30} elevation={1} backgroundColor="white">
         <Pane marginBottom={30} textAlign="center">
-          {piggy ? (
+          {piggyTimeLock ? (
             <>
               <Heading>
                 Your PiggyBank amount is:{' '}
                 <Ui.Denominate
-                  value={piggy.amount}
+                  value={piggyAmount || '0'}
                   decimals={2}
                   erdLabel="xEGLD"
                 />
               </Heading>
               <Text>
                 Lock time:{' '}
-                {new Date(parseInt(piggy.lockDate) * 1000).toLocaleString()}
+                {new Date(parseInt(piggyTimeLock) * 1000).toLocaleString()}
               </Text>
             </>
           ) : (
@@ -73,25 +79,25 @@ const PiggyTab: React.FC<PiggyTabProps> = ({ piggy }) => {
             onClick={createPiggyModalOpen()}
             appearance="primary"
             marginRight={20}
-            disabled={Boolean(piggy)}
+            disabled={Boolean(piggyTimeLock)}
           >
             Create a Piggy
           </Button>
           <Button
             onClick={addAmountModalOpen()}
             marginRight={20}
-            disabled={!piggy}
+            disabled={!piggyTimeLock}
           >
             Add amount
           </Button>
-          <Button onClick={getAmount} marginRight={20} disabled={!piggy}>
-            Sync amount
+          <Button onClick={sync} marginRight={20} disabled={!piggyTimeLock}>
+            Sync
           </Button>
           <Button
             onClick={getPayout}
             appearance="primary"
             intent="success"
-            disabled={parseInt(piggy?.amount || '0') === 0}
+            disabled={parseInt(piggyAmount || '0') === 0}
           >
             Payout
           </Button>

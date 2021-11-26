@@ -1,4 +1,4 @@
-import { TransactionStatus, PiggyBankTxType } from './types';
+import { TransactionStatus } from './types';
 
 export const stringToHex = (str: string) => {
   if (str) {
@@ -22,6 +22,16 @@ export const hexToString = (strVal: string) => {
     return str;
   }
   return '';
+};
+
+export const base64ToHex = (str: string) => {
+  const raw = atob(str);
+  let result = '';
+  for (let i = 0; i < raw.length; i++) {
+    const hex = raw.charCodeAt(i).toString(16);
+    result += hex.length === 2 ? hex : '0' + hex;
+  }
+  return result.toUpperCase();
 };
 
 export const shortenWalletAddress = (address: string, charsAmount = 6) => {
@@ -88,37 +98,4 @@ export const parseResponseFromSC = (data: string, errorMessage?: string) => {
     return val;
   }
   return errorMessage || 'ok';
-};
-
-// Manage local storage when triggering SC functions
-// TODO: improve SC to return required values
-export const manageLocalStorage = (
-  txDataSplit: string[],
-  address: string,
-  value = '0',
-  txSCDataSplit: string[]
-) => {
-  const lsKey = `piggybank_${address}`;
-  const currentLSState = ls.get(lsKey);
-  if (txDataSplit[0] === PiggyBankTxType.CREATE && txDataSplit[1]) {
-    ls.add(lsKey, {
-      amount: '0',
-      lockDate: BigInt('0x' + txDataSplit[1]).toString(),
-    });
-  }
-  if (txDataSplit[0] === PiggyBankTxType.ADD) {
-    ls.add(lsKey, {
-      ...currentLSState,
-      amount: BigInt(BigInt(currentLSState.amount) + BigInt(value)).toString(),
-    });
-  }
-  if (txDataSplit[0] === PiggyBankTxType.GET && txSCDataSplit?.[2]) {
-    ls.add(lsKey, {
-      ...currentLSState,
-      amount: BigInt('0x' + txSCDataSplit[2]).toString(),
-    });
-  }
-  if (txDataSplit[0] === PiggyBankTxType.PAYOUT) {
-    ls.remove(lsKey);
-  }
 };

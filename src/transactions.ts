@@ -16,7 +16,7 @@ export const createPiggy = (timestamp: number) => {
   });
 
   return contract.call({
-    func: new ContractFunction('create_piggy'),
+    func: new ContractFunction('createPiggy'),
     args: [new U32Value(timestamp)],
     gasLimit: new GasLimit(5000000),
   });
@@ -29,20 +29,8 @@ export const addAmount = (amount: string) => {
   });
 
   return contract.call({
-    func: new ContractFunction('add_amount'),
+    func: new ContractFunction('addAmount'),
     value: Balance.fromString(amount),
-    gasLimit: new GasLimit(5000000),
-  });
-};
-
-// Check how many egld/xegld you have in your PiggyBank
-export const amount = () => {
-  const contract = new SmartContract({
-    address: new Address(piggybankScAddress),
-  });
-
-  return contract.call({
-    func: new ContractFunction('amount'),
     gasLimit: new GasLimit(5000000),
   });
 };
@@ -54,7 +42,7 @@ export const payout = () => {
   });
 
   return contract.call({
-    func: new ContractFunction('pay_out'),
+    func: new ContractFunction('payOut'),
     gasLimit: new GasLimit(5000000),
   });
 };
