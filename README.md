@@ -1,5 +1,7 @@
 ### PiggyBank Smart Contract frontend app
 
+**Please be aware that this template uses the older Elrond dapp library.** The newest one is here: [dapp-core](https://github.com/ElrondNetwork/dapp-core).
+
 PiggyBank is a custom Smart Contract on the Elrond blockchain. If you want to know more about preparing and deploying such a Smart Contract, check out separate [blog post](https://www.julian.io/articles/elrond-smart-contracts.html). Here we have a frontend app for it. 
 
 - [Smart Contract repo](https://github.com/juliancwirko/elrond-simple-sc)
